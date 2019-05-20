@@ -12,6 +12,9 @@
 		E34AB34F229083E7007B8980 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E34AB34D229083E7007B8980 /* Main.storyboard */; };
 		E34AB351229083E7007B8980 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E34AB350229083E7007B8980 /* Assets.xcassets */; };
 		E34AB354229083E7007B8980 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E34AB352229083E7007B8980 /* LaunchScreen.storyboard */; };
+		E34AB35C229083F9007B8980 /* ImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34AB35B229083F9007B8980 /* ImageItem.swift */; };
+		E34AB35E22908416007B8980 /* ImageItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34AB35D22908416007B8980 /* ImageItemModel.swift */; };
+		E34AB3602290B0BD007B8980 /* ImageItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E34AB35F2290B0BD007B8980 /* ImageItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		E34AB350229083E7007B8980 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E34AB353229083E7007B8980 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E34AB355229083E7007B8980 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E34AB35B229083F9007B8980 /* ImageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageItem.swift; sourceTree = "<group>"; };
+		E34AB35D22908416007B8980 /* ImageItemModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageItemModel.swift; sourceTree = "<group>"; };
+		E34AB35F2290B0BD007B8980 /* ImageItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 				E34AB350229083E7007B8980 /* Assets.xcassets */,
 				E34AB352229083E7007B8980 /* LaunchScreen.storyboard */,
 				E34AB355229083E7007B8980 /* Info.plist */,
+				E34AB35B229083F9007B8980 /* ImageItem.swift */,
+				E34AB35D22908416007B8980 /* ImageItemModel.swift */,
+				E34AB35F2290B0BD007B8980 /* ImageItemView.swift */,
 			);
 			path = ImageComposer;
 			sourceTree = "<group>";
@@ -135,8 +144,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E34AB35C229083F9007B8980 /* ImageItem.swift in Sources */,
 				E34AB34C229083E7007B8980 /* ViewController.swift in Sources */,
+				E34AB35E22908416007B8980 /* ImageItemModel.swift in Sources */,
 				E34AB34A229083E7007B8980 /* AppDelegate.swift in Sources */,
+				E34AB3602290B0BD007B8980 /* ImageItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
