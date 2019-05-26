@@ -14,10 +14,33 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var imageItemView: ImageItemView!{
         didSet{
+            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(byHandlingGestureRecognizedBy:)))
+            tap.numberOfTapsRequired = 1
+            tap.numberOfTouchesRequired = 1
+            imageItemView.addGestureRecognizer(tap)
+            
             let pan = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(byHandlingGestureRecognizedBy:)))
             pan.maximumNumberOfTouches = 1
             pan.minimumNumberOfTouches = 1
             imageItemView.addGestureRecognizer(pan)
+            
+            let pinch = UIPinchGestureRecognizer(target: self, action: #selector(handlePinchGesture(byHandlingGestureRecognizedBy:)))
+            imageItemView.addGestureRecognizer(pinch)
+        }
+    }
+    
+    @objc func handleTapGesture(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer){
+        switch recognizer.state {
+        case .ended:
+            if let selectedImageItem = model.getImageItemForPoint(pointInModel: imageItemView.getPointInModel(pointInView: recognizer.location(in: imageItemView))){
+                if let index = imageItemView.imageItems.firstIndex (where: { $0 == selectedImageItem }){
+                    imageItemView.selectItem(index: index)
+                }
+            }else{
+                imageItemView.unselectAllItems()
+            }
+        default:
+            break
         }
     }
     
@@ -34,12 +57,23 @@ class ViewController: UIViewController {
         case .changed: fallthrough
         case .ended:
             if let selectedItem = imageItemView.selectedImageItem{
-                model.moveImageItem(imageItem: selectedItem, translation: recognizer.translation(in: imageItemView))
+                model.moveImageItem(imageItem: selectedItem, translation: recognizer.translation(in: imageItemView).applying(imageItemView.inModelScaleTransformation))
                 imageItemView.imageItems = model.getImageItemSetZORdered()
             }else{
-                imageItemView.adjustOriginOffset(offset: recognizer.translation(in: imageItemView))
+                imageItemView.modifyTranslationBy(offset: recognizer.translation(in: imageItemView))
             }
             recognizer.setTranslation(CGPoint(), in: imageItemView)
+        default:
+            break
+        }
+    }
+    
+    @objc func handlePinchGesture(byHandlingGestureRecognizedBy recognizer: UIPinchGestureRecognizer){
+        switch recognizer.state {
+        case .changed: fallthrough
+        case .ended:
+            imageItemView.modifyScaleBy(amount: recognizer.scale)
+            recognizer.scale = 1
         default:
             break
         }

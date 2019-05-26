@@ -9,9 +9,14 @@
 import UIKit
 import Foundation
 
-struct ImageItem : Equatable{
+struct ImageItem : Equatable, CustomStringConvertible{
+    
+    var description: String {
+        return "[\(imageName)], x:\(x), y:\(y) width:\(width), height:\(height)"
+    }
+    
     var imageName: String = ""
-    var geometry = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0)
+    var geometry = CGRect(x: 0.0, y: 0.0, width: 80.0, height: 80.0)
     var scale: Double = 1
     var rotationAngle: Double = 0
     var zOrder = 0
