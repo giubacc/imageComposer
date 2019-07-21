@@ -29,16 +29,22 @@ class ViewController: UIViewController {
         }
     }
     
+    @discardableResult func selectImageItem(pointInView: CGPoint) -> ImageItem?{
+        if let selectedImageItem = model.getImageItemForPoint(pointInModel: imageItemView.getPointInModel(pointInView: pointInView)){
+            if let index = imageItemView.imageItems.firstIndex (where: { $0 == selectedImageItem }){
+                imageItemView.selectItem(index: index)
+            }
+            return selectedImageItem
+        }else{
+            imageItemView.unselectAllItems()
+            return nil
+        }
+    }
+    
     @objc func handleTapGesture(byHandlingGestureRecognizedBy recognizer: UITapGestureRecognizer){
         switch recognizer.state {
         case .ended:
-            if let selectedImageItem = model.getImageItemForPoint(pointInModel: imageItemView.getPointInModel(pointInView: recognizer.location(in: imageItemView))){
-                if let index = imageItemView.imageItems.firstIndex (where: { $0 == selectedImageItem }){
-                    imageItemView.selectItem(index: index)
-                }
-            }else{
-                imageItemView.unselectAllItems()
-            }
+            selectImageItem(pointInView: recognizer.location(in: imageItemView))
         default:
             break
         }
@@ -47,13 +53,7 @@ class ViewController: UIViewController {
     @objc func handlePanGesture(byHandlingGestureRecognizedBy recognizer: UIPanGestureRecognizer){
         switch recognizer.state {
         case .began:
-            if let selectedImageItem = model.getImageItemForPoint(pointInModel: imageItemView.getPointInModel(pointInView: recognizer.location(in: imageItemView))){
-                if let index = imageItemView.imageItems.firstIndex (where: { $0 == selectedImageItem }){
-                    imageItemView.selectItem(index: index)
-                }
-            }else{
-                imageItemView.unselectAllItems()
-            }
+            selectImageItem(pointInView: recognizer.location(in: imageItemView))
         case .changed: fallthrough
         case .ended:
             if let selectedItem = imageItemView.selectedImageItem{
